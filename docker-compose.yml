@@ -40,6 +40,15 @@ services:
       - elk
     depends_on:
       - elasticsearch
+      
+  api:
+    build: api/
+    ports:
+      - "8800:80"
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch   
 
 networks:
 
