@@ -1,6 +1,7 @@
- SELECT
+SELECT
   Case When log.REFERENCE Is Null Then Concat(CT.CT_ID, CT.TD_ID, CT.CP_ID) Else log.reference END  As id,
   CT.NAME_ As 'name',
+  CT.LOG_SID As logsid,
   ls2.NAME_ As actionPlan,
   ct.is_critical As 'priority',
   ls.NAME_ As 'status',    
@@ -8,10 +9,10 @@
   Concat(FYP.NAME_, ' ', FY.NAME_) As closePeriod,
   CP.START_DATE As startDate,
   CT.DUE_DATE As dueDate,
-  Concat (ap.first, ' ', AP.LAST) As asignee,
-  'CODE GAMES' as owner,
+  Concat (ap.first, ' ', AP.LAST) As owner,
+  CASE WHEN AP3.USER_ID IS Null THEN null ELSE Concat (AP3.FIRST, ' ', AP3.LAST) END As approver,
+  CASE WHEN AP4.USER_ID IS NULL THEN null ELSE Concat (AP4.FIRST, ' ', AP4.LAST) END As reviewer,
   CASE WHEN CT.COMPLETED IS NULL THEN 'false' ELSE 'true' End As completed
-
     FROM
         CL_TASK CT
         LEFT OUTER JOIN ASSIGN_PERSON AP ON CT.PERFORMER_ID = AP.PE_ID
@@ -25,4 +26,7 @@
         LEFT OUTER JOIN FORM_LIST LIS ON LOG.FORM_LIST_SID = LIS.SID
         LEFT OUTER JOIN demo_TRANS TRA ON LOG.LAST_ROUTE_TRANS = TRA.SID
         LEFT OUTER JOIN ASSIGN_PERSON AP2 ON TRA.RECEIVER = AP2.USER_ID
+        LEFT OUTER JOIN ASSIGN_PERSON AP3 ON CT.APPROVER_ID = AP3.PE_ID
+        LEFT OUTER JOIN ASSIGN_PERSON AP4 ON CT.REVIEWER_ID = AP4.PE_ID
        Inner JOIN LOV_SYS LS2 ON CT.TYPE_LOV_ID = LS2.LS_ID
+ 
