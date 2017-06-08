@@ -6,4 +6,3 @@ E:\SRC\CodeGames\KanbanApi\WebApi\bin\Release\netcoreapp1.1\WebApi.pdb
 E:\SRC\CodeGames\KanbanApi\WebApi\obj\Release\netcoreapp1.1\WebApi.AssemblyInfo.cs
 E:\SRC\CodeGames\KanbanApi\WebApi\obj\Release\netcoreapp1.1\WebApi.dll
 E:\SRC\CodeGames\KanbanApi\WebApi\obj\Release\netcoreapp1.1\WebApi.pdb
-E:\SRC\CodeGames\KanbanApi\WebApi\obj\Release\netcoreapp1.1\WebApi.csprojResolveAssemblyReference.cache
