@@ -18,7 +18,7 @@ services:
 
   logstash:
     build: logstash/
-    command: bash -c "logstash -f /usr/share/logstash/pipeline/logstash-close-task-d.conf;logstash -f /usr/share/logstash/pipeline/logstash-close-task.conf"
+    command: bash -c "logstash -f /usr/share/logstash/pipeline/logstash-close-task.conf"
     volumes:
       - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
       - ./logstash/pipeline:/usr/share/logstash/pipeline
