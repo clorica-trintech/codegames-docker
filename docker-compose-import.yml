@@ -1,0 +1,38 @@
+version: '2'
+
+services:
+
+  elasticsearch:
+    build: elasticsearch/
+    volumes:
+      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ./elasticsearch/data:/usr/share/elasticsearch/data
+      - ./elasticsearch/logs:/usr/share/elasticsearch/logs
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      ES_JAVA_OPTS: "-Xms1G -Xmx2G"
+    networks:
+      - elk
+
+  logstash:
+    build: logstash/
+    command: bash -c "logstash -f /usr/share/logstash/pipeline/logstash-close-task-d.conf;logstash -f /usr/share/logstash/pipeline/logstash-close-task.conf"
+    volumes:
+      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ./logstash/pipeline:/usr/share/logstash/pipeline
+      - ./logstash/logs:/usr/share/logstash/logs
+    ports:
+      - "5000:5000"
+    environment:
+      LS_JAVA_OPTS: "-Xms256m -Xmx512m"
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
+
+networks:
+
+  elk:
+    driver: bridge

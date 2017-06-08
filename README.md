@@ -17,6 +17,10 @@ Pulls and runs the official images:
     ```
     E:\Projects\workspace\CodeGamesDocker> docker-compose up
     ```
+5. On the command line, to import data:
+    ```
+    E:\Projects\workspace\CodeGamesDocker> docker-compose -f docker-compose-import.yml up
+    ```
     
 ## Usage
 

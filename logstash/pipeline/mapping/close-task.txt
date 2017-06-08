@@ -1,0 +1,22 @@
+PUT close
+{
+  "mappings": {
+    "task": { 
+      "_all": { "enabled": false  }, 
+      "properties": { 
+        "id": { "type": "text"  }, 
+        "name": { "type": "text"  },
+        "workFlowTag": { "type": "text"  },
+        "actionPlan": { "type": "keyword" }, 
+        "action": { "type": "keyword" }, 
+        "priority": { "type": "keyword" }, 
+        "status": { "type": "keyword" }, 
+        "entity": { "type": "text" },
+        "closePeriod": { "type": "text" },
+        "startDate": { "type": "date" },
+        "dueDate": { "type": "date" },
+        "asignee": { "type": "text" }
+      }
+    }
+  }
+}
